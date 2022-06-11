@@ -116,6 +116,7 @@ function emotion_recognition_result_next() {
 
 function speechStart() {
     activeButton(1)//按鈕變色
+    if (window.recognition) speech_pause = false
     // 需要vpn和chrome的，目前只支持chrome
     window.recognition = new webkitSpeechRecognition()
     recognition.lang = 'cmn-Hans-CN'
@@ -170,24 +171,19 @@ function speechPause() {
     if (window.recognition) speech_pause = true
 }
 
-// 繼續
-function speechContinue() {
-    activeButton(3)//按鈕變色
-    // 暫停設置及內容
-    if (window.recognition) speech_pause = false
-}
-
 //重置 
 function speechReset() {
-    activeButton(4)//按鈕變色
+    activeButton(3)//按鈕變色
     // 內容清空
     final_transcript = ''
     $("#emotion_recognition_p").text('')
+
+    // 暫停設置及內容
+    if (window.recognition) speech_pause = true
 }
 
 //結束 
 function speechEnd() {
-    activeButton(5)//按鈕變色
     // 內容清空
     final_transcript = ''
     $("#emotion_recognition_p").text('')
