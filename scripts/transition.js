@@ -3,10 +3,11 @@ let turn_state = false; //開啟
 let speech_pause = false; //暫停
 
 // 請求host
-const PYTHON_HOST = "http://127.0.0.1:4320";
+// const PYTHON_HOST = "http://127.0.0.1:4320";
+const PYTHON_HOST = "https://pythonscriptserver.region.mo";
 
 // 重新開始遊戲
-function again() {
+https: function again() {
   window.location.reload();
 }
 
@@ -153,72 +154,72 @@ async function emotion_recognition_next() {
   }, 1000);
 }
 
-const getAllScores = async () => {
-  try {
-    const data = await fetch(`${HOST}/api/user/all_scores?pin=${pinInput}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+// const getAllScores = async () => {
+//   try {
+//     const data = await fetch(`${HOST}/api/user/all_scores?pin=${pinInput}`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }).then((res) => res.json());
 
-    if (data.error) {
-      throw new Error(data.error);
-    } else {
-      data.forEach((item) => {
-        scoresData.push({
-          id: item.id,
-          itemName: item.itemName,
-          score: item.score,
-        });
-      });
+//     if (data.error) {
+//       throw new Error(data.error);
+//     } else {
+//       data.forEach((item) => {
+//         scoresData.push({
+//           id: item.id,
+//           itemName: item.itemName,
+//           score: item.score,
+//         });
+//       });
 
-      // 基于准备好的dom，初始化echarts实例
-      $("#eChartsMain").ready(() => {
-        const myChart = echarts.init(document.getElementById("eChartsMain"));
+//       // 基于准备好的dom，初始化echarts实例
+//       $("#eChartsMain").ready(() => {
+//         const myChart = echarts.init(document.getElementById("eChartsMain"));
 
-        // 指定图表的配置项和数据
-        const option = {
-          title: {
-            text: "遊戲得分圖",
-          },
-          radar: {
-            indicator: items.map((item) => {
-              return {
-                name: item,
-                max: 100,
-              };
-            }),
-          },
-          series: [
-            {
-              // name: "得分",
-              type: "radar",
-              data: [
-                {
-                  value: items.map((item) => {
-                    const scores = scoresData.filter((s) => {
-                      return s.itemName === item;
-                    });
-                    const score = _.maxBy(scores, "score");
+//         // 指定图表的配置项和数据
+//         const option = {
+//           title: {
+//             text: "遊戲得分圖",
+//           },
+//           radar: {
+//             indicator: items.map((item) => {
+//               return {
+//                 name: item,
+//                 max: 100,
+//               };
+//             }),
+//           },
+//           series: [
+//             {
+//               // name: "得分",
+//               type: "radar",
+//               data: [
+//                 {
+//                   value: items.map((item) => {
+//                     const scores = scoresData.filter((s) => {
+//                       return s.itemName === item;
+//                     });
+//                     const score = _.maxBy(scores, "score");
 
-                    return score?.score || 0;
-                  }),
-                  name: "各項遊戲得分得分",
-                },
-              ],
-            },
-          ],
-        };
+//                     return score?.score || 0;
+//                   }),
+//                   name: "各項遊戲得分得分",
+//                 },
+//               ],
+//             },
+//           ],
+//         };
 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-      });
-    }
-  } catch (error) {
-    console.error("發生錯誤:", error);
-  }
-};
+//         // 使用刚指定的配置项和数据显示图表。
+//         myChart.setOption(option);
+//       });
+//     }
+//   } catch (error) {
+//     console.error("發生錯誤:", error);
+//   }
+// };
 
 // 進入到結束頁面
 function emotion_recognition_result_next() {
