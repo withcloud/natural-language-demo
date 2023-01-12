@@ -278,37 +278,28 @@ function speechStart() {
 
           recognition.stop();
 
-          let result = await fetch(`${PYTHON_HOST}/?str=${data}`, {
+          let response = await fetch(`${PYTHON_HOST}/?str=${data}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
-            mode: "no-cors",
-          }).then((res) => res.json());
-
+          });
+          let result = await response.json();
+          let sentiments = 0;
           if (result) {
             console.log(result);
-            $("#sentiments").text(`sentiments: ${result.result2.sentiments}`);
-            if (
-              result.result2.sentiments &&
-              result.result2.sentiments < 0.45 &&
-              result.result2.sentiments > 0
-            ) {
+            sentiments =
+              result.response.result2.sentiments || result.result2.sentiments;
+            $("#sentiments").text(`sentiments: ${sentiments}`);
+            if (sentiments && sentiments < 0.45 && sentiments > 0) {
               $("#angry_true").css("display", "block");
               ++Angry_num;
             }
-            if (
-              result.result2.sentiments &&
-              result.result2.sentiments > 0.66667
-            ) {
+            if (sentiments && sentiments > 0.66667) {
               $("#happy_true").css("display", "block");
               ++Happy_num;
             }
-            if (
-              result.result2.sentiments &&
-              result.result2.sentiments > 0.45 &&
-              result.result2.sentiments < 0.66667
-            ) {
+            if (sentiments && sentiments > 0.45 && sentiments < 0.66667) {
               $("#no_emotion_true").css("display", "block");
               ++Emotion_num;
             }
