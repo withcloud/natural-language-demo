@@ -283,6 +283,7 @@ function speechStart() {
             headers: {
               "Content-Type": "application/json",
             },
+            mode: "no-cors",
           }).then((res) => res.json());
 
           if (result) {
