@@ -2,6 +2,8 @@ let final_transcript = ""; //頁面內容
 let turn_state = false; //開啟
 let speech_pause = false; //暫停
 
+let recognition;
+
 // 請求host
 // const PYTHON_HOST = "http://127.0.0.1:4320";
 const PYTHON_HOST = "https://pythonscriptserver.region.mo";
@@ -51,9 +53,9 @@ function language_game(number) {
 }
 
 function language_start(language) {
-  $("#pinInputPage").removeClass("hidden");
+  // $("#pinInputPage").removeClass("hidden");
+  $(`#emotion_recognition`).css("display", "block");
   $(`#introduction_${language}`).css("display", "none");
-  $();
   clearInterval(window.languageCarTimer); //清除語言頁面倒計時
 }
 
@@ -113,23 +115,23 @@ function pin_code_start() {
 
 async function emotion_recognition_next() {
   // 上傳分數
-  try {
-    const body = {
-      score: 100,
-      pin: pinInput,
-      itemName: GAME_NAME,
-    };
+  // try {
+  //   const body = {
+  //     score: 100,
+  //     pin: pinInput,
+  //     itemName: GAME_NAME,
+  //   };
 
-    const result = await fetch(`${HOST}/api/score/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).then((res) => res.json());
-  } catch (error) {
-    console.error("發生錯誤:", error);
-  }
+  //   const result = await fetch(`${HOST}/api/score/create`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(body),
+  //   }).then((res) => res.json());
+  // } catch (error) {
+  //   console.error("發生錯誤:", error);
+  // }
 
   $("#emotion_recognition").css("display", "none");
   $("#emotion_recognition_result").css("display", "block");
@@ -145,11 +147,16 @@ async function emotion_recognition_next() {
   window.emotionRecognitionResultnNumTimer = setInterval(() => {
     window.emotionRecognitionResultnNum -= 1;
     $("#emotion_recognition_result_titile").text(
-      `情緒結果（${window.emotionRecognitionResultnNum}）`
+      `情緒結果（${String(window.emotionRecognitionResultnNum).padStart(
+        2,
+        "0"
+      )}）`
     );
     if (window.emotionRecognitionResultnNum <= 0) {
       clearInterval(window.emotionRecognitionResultnNumTimer); // 清除倒計時
-      emotion_recognition_result_next();
+      // emotion_recognition_result_next();
+      $("#emotion_recognition_result").css("display", "none");
+      $("#main").css("display", "block");
     }
   }, 1000);
 }
@@ -243,7 +250,7 @@ function speechStart() {
   activeButton(1); //按鈕變色
   if (window.recognition) speech_pause = false;
   // 需要vpn和chrome的，目前只支持chrome
-  window.recognition = new webkitSpeechRecognition();
+  window.recognition = recognition = new webkitSpeechRecognition();
   recognition.lang = "cmn-Hans-CN";
   recognition.continuous = true; // 配置设置以使每次识别都返回连续结果
   recognition.interimResults = true; // 配置应返回临时结果的设置
@@ -257,6 +264,7 @@ function speechStart() {
     //每次說話，把準確率最高的那個顯示在頁面上
     // 第幾次說話便從第幾次追加內容
     var interim_transcript = "";
+    let data = "";
 
     if (!speech_pause) {
       for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -265,8 +273,11 @@ function speechStart() {
           $("#no_emotion_true").css("display", "none");
           $("#happy_true").css("display", "none");
           $("#sentiments").text(`sentiments: `);
-          const data = event.results[i][0].transcript;
+          data = event.results[i][0].transcript;
           $("#emotion_recognition_p").text(data);
+
+          recognition.stop();
+
           let result = await fetch(`${PYTHON_HOST}/?str=${data}`, {
             method: "GET",
             headers: {
@@ -312,9 +323,7 @@ function speechStart() {
         }
       }
     }
-
     final_transcript = capitalize(final_transcript);
-    // $("#emotion_recognition_p").text(final_transcript);
   };
 
   recognition.onend = function () {
