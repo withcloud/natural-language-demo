@@ -24,6 +24,7 @@
   <!-- 開始頁面 -->
   <div id='main'
     style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;display: block;">
+    <div style="position: absolute; right:20px ; top: 20px; font-size: 30px;  color: white; border: 1px solid white; padding: 5px 10px ; border-radius: 10px;">*建議使用 google chrome 瀏覽器.</div>
     <div id='main_title' class="main_title web">聲音中的喜怒哀樂</div>
     <img class='frame' id='non_intractive' src=assets/frame.svg></img>
     <div class="main_button">
@@ -36,7 +37,7 @@
   <!-- 中文簡介 -->
   <div id='introduction_chinese' class="introduction">
     <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
-      <div class="main_title web">中文介紹內容待填充</div>
+      <div id='main_title' class="main_title web" >在這頁會介紹相關原理跟說明讓用戶對數據科學技術有一定了解。</div>
       <div class="main_button" style="justify-content: center;">
         <button class='introduction_start' onclick="language_start('chinese')">開始</button>
       </div>
@@ -65,6 +66,9 @@
 
   <!-- 輸入PIN嗎頁面 -->
   <section id="pinInputPage" class="w-full h-screen overflow-hidden relative" style="background:#4B4453;display: none;">
+    <div class="game-canvas-delete" onclick="window.location.reload();">
+      <img  src="./assets/image/delete.png" alt=""/>
+    </div>
     <div class="w-full h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -142,7 +146,7 @@
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="flex justify-center">
             <label class="block text-gray-700 font-medium mb-2 text-lg" htmlFor="username">
-              請選擇該方式
+              或是以新的用戶身份（請使用新用戶開始遊戲）
             </label>
           </div>
           <div class="flex items-center justify-center">
@@ -161,7 +165,7 @@
   <div id='emotion_recognition' class='emotion_recognition' style='display: none;'>
     <div style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
       <!-- 溫馨提示 -->
-      <div class="absolute right-4 top-4 flex flex-col items-end font-medium text-[17px] text-white">
+      <div class="absolute right-40 top-4 flex flex-col items-end font-medium text-[17px] text-white">
         <p class="font-bold text-[24px] self-center">溫馨提示</p>
         <p class="font-bold text-[24px] self-center">請使用廣東話進行遊戲</p>
         <p>1. 嘗試對著麥克風說：”你好嗎？“</p>
@@ -174,7 +178,7 @@
 
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <textarea id='emotion_recognition_p' class="emotion_recognition_p"
-          oninput="emotion_recognition_just();"></textarea>
+          oninput="emotion_recognition_just();" disabled="disabled" ></textarea>
         <div id='emotion_recognition_button' class="pt-4 flex justify-center items-center space-x-4">
           <button id="emotion_recognition_button_start" onclick="speechStart();"
             class="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200 disabled:cursor-not-allowed">Start</button>
@@ -275,12 +279,13 @@
           </div>
         </div>
       </div>
-
+      
       <div class="flex items-center justify-center">
-        <button id="endGameBtn"
+        <button id="endButton"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline h-12 text-xl"
+          onclick="again()"
           type="button">
-          結束遊戲
+          再來！（10）
         </button>
       </div>
     </div>
