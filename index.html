@@ -390,6 +390,8 @@
   };
 
   const newStart = async () => {
+    var startDirectlyBtn=document.getElementById('startDirectlyBtn')
+    startDirectlyBtn.innerText="正在創建新用戶..."
     setDisabled("pinStartBtn", true);
     setDisabled("startDirectlyBtn", true);
     // 建立用戶
