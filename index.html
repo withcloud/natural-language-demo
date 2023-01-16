@@ -168,17 +168,25 @@
     <div class="flex flex-col"
       style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
       <!-- 溫馨提示 -->
-      <div class="absolute left-4 top-4 flex-col items-end font-medium text-[17px] text-white hidden xl:flex ">
-        <p class="font-bold text-[24px] self-center">溫馨提示</p>
-        <p class="font-bold text-[24px] self-center">請使用廣東話進行遊戲</p>
-        <p>1. 嘗試對著麥克風說：”你好嗎？“</p>
-        <p>2. 嘗試對著麥克風說：”我很快樂“</p>
-        <p>3. 嘗試對著麥克風說：”我很生氣“</p>
+      <div
+        class="absolute max-w-[320px] left-4 top-4 flex-col items-start font-medium text-[17px] text-white hidden xl:flex ">
+        <p class="font-bold text-[24px]">遊戲玩法介紹</p>
+        <p class="text-[19px]">1. 點擊頁面中間的「開始錄音」即可開始遊玩</p>
+        <p class="text-[19px]">2. 請用戶使用廣東話進行遊戲</p>
+        <p class="text-[19px]">3. 遊戲開始後，可以點擊頁面中間出現的「停止錄音」暫停遊玩</p>
+        <p class="text-[19px]">4. 用戶點擊「下一頁」即會進行遊戲結算頁</p>
+        <p>---------------------------</p>
+        <p>嘗試對著麥克風說：”你好嗎？“</p>
+        <p>嘗試對著麥克風說：”我很快樂“</p>
+        <p>嘗試對著麥克風說：”我很生氣“</p>
       </div>
 
       <div>
         <div id="emotion_recognition_title" class="title">Emotion Recognition</div>
-        <p class="font-bold text-[32px] text-white text-center block xl:hidden">請使用廣東話進行遊戲</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">1. 點擊頁面中間的「開始錄音」即可開始遊玩</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">2. 請用戶使用廣東話進行遊戲</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">3. 遊戲開始後，可以點擊頁面中間出現的「停止錄音」暫停遊玩</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">4. 用戶點擊「下一頁」即會進行遊戲結算頁</p>
 
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
           <textarea id='emotion_recognition_p' class="emotion_recognition_p" oninput="emotion_recognition_just();"
