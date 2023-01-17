@@ -164,29 +164,21 @@
   </section>
 
   <!-- 語音翻譯 -->
-  <div id='emotion_recognition' class='emotion_recognition' style='display: none;'>
+  <div id='emotion_recognition' class='emotion_recognition' style='display: block;'>
     <div class="flex flex-col"
       style="width: 100%; height: 100%; background:#4B4453; position: fixed; left:0px;top:0px;">
       <!-- 溫馨提示 -->
       <div
-        class="absolute max-w-[320px] left-4 top-4 flex-col items-start font-medium text-[17px] text-white hidden xl:flex ">
-        <p class="font-bold text-[24px]">遊戲玩法介紹</p>
-        <p class="text-[19px]">1. 點擊頁面中間的「開始錄音」即可開始遊玩</p>
-        <p class="text-[19px]">2. 請用戶使用廣東話進行遊戲</p>
-        <p class="text-[19px]">3. 遊戲開始後，可以點擊頁面中間出現的「停止錄音」暫停遊玩</p>
-        <p class="text-[19px]">4. 用戶點擊「下一頁」即會進行遊戲結算頁</p>
-        <p>---------------------------</p>
-        <p>嘗試對著麥克風說：”你好嗎？“</p>
-        <p>嘗試對著麥克風說：”我很快樂“</p>
-        <p>嘗試對著麥克風說：”我很生氣“</p>
+        class="absolute max-w-[350px] left-4 top-4 flex-col items-start space-y-4 font-medium text-[17px] text-white hidden xl:flex ">
+        <p class="text-[24px] py-1 px-2 border-2 rounded-md">*請允許瀏覽器使用麥克風</p>
+        <p class="text-[24px] py-1 px-2 border-2 rounded-md">*玩法：點擊「開始錄音」後，使用廣東話說出帶有情緒的語句吧。</p>
       </div>
 
       <div>
         <div id="emotion_recognition_title" class="title">Emotion Recognition</div>
-        <p class="font-bold text-[32px] text-white text-center block xl:hidden">1. 點擊頁面中間的「開始錄音」即可開始遊玩</p>
-        <p class="font-bold text-[32px] text-white text-center block xl:hidden">2. 請用戶使用廣東話進行遊戲</p>
-        <p class="font-bold text-[32px] text-white text-center block xl:hidden">3. 遊戲開始後，可以點擊頁面中間出現的「停止錄音」暫停遊玩</p>
-        <p class="font-bold text-[32px] text-white text-center block xl:hidden">4. 用戶點擊「下一頁」即會進行遊戲結算頁</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">*請允許瀏覽器使用麥克風</p>
+        <p class="font-bold text-[32px] text-white text-center block xl:hidden">*玩法：點擊「開始錄音」後，使用廣東話說出帶有情緒的語句吧。</p>
+
 
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
           <textarea id='emotion_recognition_p' class="emotion_recognition_p" oninput="emotion_recognition_just();"
