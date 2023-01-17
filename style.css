@@ -135,14 +135,6 @@ body {
 }
 
 .main_button {
-  width: 892px;
-  height: 202px;
-
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
   font-size: 69px;
 
   display: flex;
@@ -298,7 +290,7 @@ body {
   height: 200px;
   padding: 15px;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .emotion_recognition_button button {
   padding: 5px 20px;
