@@ -151,13 +151,16 @@ function language_start(language) {
 
 function pin_code_start() {
   $("#emotion_recognition").css("display", "block");
-  $("#pinInputPage").addClass("hidden");
+  $("#pinInputPage").css("display", "none");
 }
 
 async function emotion_recognition_next() {
   if (window?.recognition) {
     window?.recognition?.stop();
   }
+
+  $("#emotion_recognition_button_nextPage").prop("disabled", "true");
+  $("#emotion_recognition_button_nextPage").text("正在上傳分數...");
   // 上傳分數
   try {
     const body = {
@@ -173,8 +176,12 @@ async function emotion_recognition_next() {
       },
       body: JSON.stringify(body),
     }).then((res) => res.json());
+    $("#emotion_recognition_button_nextPage").prop("disabled", "false");
+    $("#emotion_recognition_button_nextPage").text("下一頁");
   } catch (error) {
     console.error("發生錯誤:", error);
+    $("#emotion_recognition_button_nextPage").prop("disabled", "false");
+    $("#emotion_recognition_button_nextPage").text("下一頁");
   }
 
   $("#emotion_recognition").css("display", "none");
