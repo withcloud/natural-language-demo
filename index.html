@@ -22,8 +22,7 @@
 
 <body class="bg-[#4B4453]">
   <!-- 開始頁面 -->
-  <div id='main'
-    style="width: 100%; height: 100%; position: fixed; left:0px;top:0px;display: block;">
+  <div id='main' style="width: 100%; height: 100%; position: fixed; left:0px;top:0px;display: block;">
     <div
       style="position: absolute; right:20px ; top: 20px; font-size: 30px;  color: white; border: 1px solid white; padding: 5px 10px ; border-radius: 10px;">
       *建議使用 google chrome 瀏覽器.</div>
@@ -165,7 +164,7 @@
 
   <!-- 語音翻譯 -->
   <div id='emotion_recognition' class='emotion_recognition relative w-screen h-screen ' style='display: none;'>
-    
+
     <div class="w-[960px] min-h-[768px] h-full mx-auto flex flex-col justify-between pb-8">
       <!-- 溫馨提示 -->
       <div
@@ -388,6 +387,8 @@
         setDisabled("startDirectlyBtn", false);
         $("#pinInputPage").addClass("hidden");
         $("#secondIntroPage").removeClass("hidden");
+        pin_code_start()
+
       }
     } catch (error) {
       $.toast({
