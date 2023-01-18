@@ -7,9 +7,9 @@ let diff_lang_number = 0;
 let diff_lang_prompt = {
   buttonNextPage: ["下一頁", "Next Page", "Próxima Página"],
   toastTitle: ["成功", "Success", "Sucesso"],
-  positiveEmotions: ["積極", "Positive", "Positivo"],
-  naturalEmotions: ["自然", "Natural", "Natureza"],
-  negativeEmotions: ["消極", "Negative", "Negativo"],
+  positiveEmotions: ["正面", "Positive", "Positivo"],
+  naturalEmotions: ["中性", "Natural", "Natureza"],
+  negativeEmotions: ["負面", "Negative", "Negativo"],
 
   recognitionPageButtonStart: [
     "開始錄音",
