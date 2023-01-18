@@ -310,6 +310,7 @@ function speechStart() {
         icon: "error",
         position: "bottom-left",
       });
+
       return;
     }
 
@@ -404,7 +405,15 @@ function speechStart() {
     };
 
     recognition.onerror = function (event) {
-      console.log("onerror", event.message);
+      console.log("onerror", event);
+      if (event.error) {
+        $.toast({
+          heading: "Error",
+          text: "未開啟麥克風，請重新開始，並允許請求麥克風權限！",
+          icon: "error",
+          position: "bottom-left",
+        });
+      }
     };
   } catch (error) {}
 }
